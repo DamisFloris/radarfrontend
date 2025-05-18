@@ -1,4 +1,6 @@
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Button, StyleSheet, SafeAreaView } from "react-native";
+import { AppTextInput } from "components/AppTextInput";
+import { AppText } from "components/AppText";
 import { useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
@@ -29,21 +31,30 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={{ padding: 20 }}>
-      <Text>Email</Text>
-      <TextInput
+    <SafeAreaView style={styles.container}>
+      <AppText>Email</AppText>
+      <AppTextInput
         onChangeText={setEmail}
+        placeholder="Email"
         value={email}
         style={{ borderWidth: 1, marginBottom: 10 }}
       />
-      <Text>Password</Text>
-      <TextInput
+      <AppText>Password</AppText>
+      <AppTextInput
         onChangeText={setPassword}
+        placeholder="Password"
         value={password}
         secureTextEntry
         style={{ borderWidth: 1 }}
       />
       <Button title="Login" onPress={handleLogin} />
-    </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+  },
+});

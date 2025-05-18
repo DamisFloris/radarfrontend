@@ -1,4 +1,9 @@
 import { Slot, SplashScreen, useRouter } from "expo-router";
+import {
+  useFonts,
+  Urbanist_400Regular,
+  Urbanist_700Bold,
+} from "@expo-google-fonts/urbanist";
 import { ActivityIndicator, View } from "react-native";
 import { useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
