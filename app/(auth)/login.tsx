@@ -4,6 +4,7 @@ import { AppText } from "components/AppText";
 import { useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
+import i18n from "../../i18n";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <AppText>{i18n.t("welcome")}</AppText>
       <AppText>Email</AppText>
       <AppTextInput
         onChangeText={setEmail}
