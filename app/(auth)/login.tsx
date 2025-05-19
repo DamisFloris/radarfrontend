@@ -33,7 +33,7 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AppText>{i18n.t("welcome")}</AppText>
+      {/* <AppText>{i18n.t("login.welcome")}</AppText> */}
       <AppText>Email</AppText>
       <AppTextInput
         onChangeText={setEmail}

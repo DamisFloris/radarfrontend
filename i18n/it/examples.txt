@@ -1,0 +1,7 @@
+// it.json
+// {
+//   "greeting": "Ciao, {{name}}!"
+// }
+
+// Da usare così:
+// i18n.t('greeting', { name: 'Damiano' }); // ➜ "Ciao, Damiano!"
