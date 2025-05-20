@@ -5,6 +5,8 @@ import { useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
+import { g } from "theme/global";
+import { vars } from "theme/vars";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -35,23 +37,34 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <AppText>{t("login.welcome")}</AppText>
-      <AppText>Email</AppText>
-      <AppTextInput
-        onChangeText={setEmail}
-        placeholder="Email"
-        value={email}
-        style={{ borderWidth: 1, marginBottom: 10 }}
-      />
-      <AppText>Password</AppText>
-      <AppTextInput
-        onChangeText={setPassword}
-        placeholder="Password"
-        value={password}
-        secureTextEntry
-        style={{ borderWidth: 1 }}
-      />
-      <Button title="Login" onPress={handleLogin} />
+      <View style={[g.flex, g.justifyCenter, g.padMd, g.gapMd]}>
+        <AppText bold style={[g.textCenter, { fontSize: 30 }]}>
+          {t("login.welcome")}
+        </AppText>
+        <View style={[g.gapMd]}>
+          <View style={[g.gapXs]}>
+            <AppText>Email</AppText>
+            <AppTextInput
+              onChangeText={setEmail}
+              placeholder="mail@test.com"
+              value={email}
+            />
+          </View>
+          <View style={[g.gapXs]}>
+            <AppText>Password</AppText>
+            <AppTextInput
+              onChangeText={setPassword}
+              placeholder="SuperSecretPassword"
+              value={password}
+              password
+            />
+          </View>
+          <AppText bold disabled>
+            {t("login.forgotPassword")}
+          </AppText>
+        </View>
+        <Button title="Login" onPress={handleLogin} />
+      </View>
     </SafeAreaView>
   );
 }

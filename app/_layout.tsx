@@ -3,10 +3,19 @@ import { ActivityIndicator, View } from "react-native";
 import { useEffect, useState } from "react";
 import "../i18n"; // Import your i18n configuration
 import * as SecureStore from "expo-secure-store";
+import {
+  useFonts,
+  Urbanist_400Regular,
+  Urbanist_700Bold,
+} from "@expo-google-fonts/urbanist";
 
 export default function RootLayout() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [fontsLoaded] = useFonts({
+    Urbanist_400Regular,
+    Urbanist_700Bold,
+  });
   const router = useRouter();
 
   useEffect(() => {
