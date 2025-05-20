@@ -1,19 +1,33 @@
-// src/i18n/index.ts
-import { I18n } from "i18n-js";
-import { getLocales } from "expo-localization";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import * as Localization from "expo-localization";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import translationEn from "./locales/en-US/translation.json";
+import translationIt from "./locales/it-IT/translation.json";
 
-import enCommon from "./en/common.json";
-import enLogin from "./en/login.json";
-import itCommon from "./it/common.json";
-import itLogin from "./it/login.json";
+const resources = {
+  "en-US": { translation: translationEn },
+  "it-IT": { translation: translationIt },
+};
 
-const i18n = new I18n({
-  en: { common: enCommon, login: enLogin },
-  it: { common: itCommon, login: itLogin },
-});
+const initI18n = async () => {
+  let savedLanguage = await AsyncStorage.getItem("language");
 
-i18n.defaultLocale = "en";
-i18n.locale = getLocales()[0]?.languageTag || "en";
-i18n.enableFallback = true;
+  if (!savedLanguage) {
+    savedLanguage = Localization.locale;
+  }
+
+  i18n.use(initReactI18next).init({
+    compatibilityJSON: "v4",
+    resources,
+    lng: savedLanguage,
+    fallbackLng: "pt-BR",
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+};
+
+initI18n();
 
 export default i18n;

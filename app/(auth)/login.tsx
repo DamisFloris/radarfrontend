@@ -4,12 +4,14 @@ import { AppText } from "components/AppText";
 import { useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
-import i18n from "../../i18n";
+import { useTranslation } from "react-i18next";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  const { t } = useTranslation();
 
   const handleLogin = async () => {
     try {
@@ -33,7 +35,7 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <AppText>{i18n.t("login.welcome")}</AppText> */}
+      <AppText>{t("login.welcome")}</AppText>
       <AppText>Email</AppText>
       <AppTextInput
         onChangeText={setEmail}
