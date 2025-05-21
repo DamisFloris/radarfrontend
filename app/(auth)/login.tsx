@@ -1,12 +1,16 @@
 import { View, Button, StyleSheet, SafeAreaView } from "react-native";
-import { AppTextInput } from "components/AppTextInput";
-import { AppText } from "components/AppText";
-import { useState } from "react";
-import * as SecureStore from "expo-secure-store";
 import { useRouter } from "expo-router";
+import { useState } from "react";
+
+//Components
+import { AppTextInput } from "components/AppTextInput";
+import { AppButton } from "components/AppButton";
+import { AppText } from "components/AppText";
+
+//Utils
+import * as SecureStore from "expo-secure-store";
 import { useTranslation } from "react-i18next";
 import { g } from "theme/global";
-import { vars } from "theme/vars";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -37,7 +41,14 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={[g.flex, g.justifyCenter, g.padMd, g.gapMd]}>
+      <View
+        style={[
+          { flex: 2 },
+          g.justifyCenter,
+          g.gapXl,
+          { paddingHorizontal: g.padLg.padding },
+        ]}
+      >
         <AppText bold style={[g.textCenter, { fontSize: 30 }]}>
           {t("login.welcome")}
         </AppText>
@@ -63,7 +74,18 @@ export default function LoginScreen() {
             {t("login.forgotPassword")}
           </AppText>
         </View>
-        <Button title="Login" onPress={handleLogin} />
+        <AppButton placeholder="Login" bold onPress={handleLogin} />
+      </View>
+      <View style={[g.flex, { paddingHorizontal: g.padLg.padding }]}>
+        <View style={[g.row, g.justifyBetween, g.itemsCenter]}>
+          <View
+            style={{ borderTopWidth: 1, borderTopColor: "white", width: "35%" }}
+          />
+          <AppText> Accedi con </AppText>
+          <View
+            style={{ borderTopWidth: 1, borderTopColor: "white", width: "35%" }}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
